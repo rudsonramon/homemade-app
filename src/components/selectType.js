@@ -9,13 +9,13 @@ const carouselItems = [
     id: 1,
     title: "Doce",
     text: "[TEXTO DESCRITIVO]",
-    illustration: require('../../assets/sobremesa.jpg'),
+    illustration: require('../../assets/categoryDoce.png'),
   },
   {
     id: 2,
     title: "Salgada",
     text: "[DESCRIÇÃO]",
-    illustration: require('../../assets/refeicao.jpg'),
+    illustration: require('../../assets/salgado.png'),
   },
 ]
 
@@ -40,7 +40,8 @@ export default function selectType({ navigation }) {
       </TouchableOpacity>)
   }
 
-  const image = require('../../assets/wave.png');
+  //const image = require('../../assets/wave.png');
+  const image = require('../../assets/backgroundMultiMeal.png');
 
   return (
 
@@ -49,18 +50,18 @@ export default function selectType({ navigation }) {
         <ImageBackground source={image} style={styles.image}>
           <TouchableOpacity onPress={() => Alert.alert('Selecione o tipo de receita que quer pesquisar')}>
             <Text style={styles.titleText}>Selecione o tipo de receita</Text>
+              <Carousel
+                layout={"default"}
+                ref={ref => carousel = ref}
+                data={carouselItems}
+                sliderWidth={screenWidth}
+                sliderHeight={screenWidth}
+                itemWidth={screenWidth - 60}
+                renderItem={renderItem}
+                onSnapToItem={index => setState({ activeIndex: index })}
+                hasParallaxImages={true}
+              />
           </TouchableOpacity>
-          <Carousel
-            layout={"default"}
-            ref={ref => carousel = ref}
-            data={carouselItems}
-            sliderWidth={screenWidth}
-            sliderHeight={screenWidth}
-            itemWidth={screenWidth - 60}
-            renderItem={renderItem}
-            onSnapToItem={index => setState({ activeIndex: index })}
-            hasParallaxImages={true}
-          />
         </ImageBackground>
       </View >
     </ScrollView>
@@ -70,26 +71,20 @@ export default function selectType({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 20,
+    width: '100%',
+    margin: 0,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  }, button: {
-    margin: '50 10',
-    height: '333',
   }, titleText: {
     fontSize: 25,
     fontWeight: "bold",
     textAlign: 'center',
   },
-  item: {
-    width: screenWidth - 50,
-    height: screenWidth - 5,
-  },
   imageContainer: {
     flex: 1,
     marginBottom: Platform.select({ ios: 0, android: 1 }), // Prevent a random Android rendering issue
-    borderRadius: 5,
+    height: 250,
+    width: 350,
+    margin:0
   },
   image: {
     flex: 1,
