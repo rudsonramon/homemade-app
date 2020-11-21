@@ -17,7 +17,7 @@ export default function App() {
   const [ingredientList, setIngredientList] = useState([])
   useEffect(() => {
   //let recipeRequest = 'http://192.168.0.3:3333/report'
-  let ingredientsRequest = 'http://192.168.0.3:3333/ingredients'
+  let ingredientsRequest = 'http://192.168.0.5:3333/ingredients'
   //recipeRequest = axios.get(recipeRequest)
   axios.get(ingredientsRequest)
   //axios.all([ingredientsRequest])

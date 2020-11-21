@@ -12,7 +12,7 @@ const RecipeCard = ({ }) => {
     //function getListOfRecipe(){
       axios({
         method: 'get',
-        url: "http://192.168.137.1:3333/report",
+        url: "http://192.168.0.5:3333/report",
         responseType: 'json',
         headers: {},
         params: {

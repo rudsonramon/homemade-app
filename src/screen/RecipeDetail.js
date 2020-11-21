@@ -7,7 +7,7 @@ export default function Details({ navigation, route }) {
   let recipe_id = route.params.id
   const [ingredientByRecipe, setIngredientsByRecipe] = useState()
 
-  const ingredientByRecipeUrl = "http://192.168.0.3:3333" + "/recipes/" + recipe_id + "/ingredients"
+  const ingredientByRecipeUrl = "http://192.168.0.5:3333" + "/recipes/" + recipe_id + "/ingredients"
   useEffect(() => { 
   axios.get(ingredientByRecipeUrl)
     .then(response => {

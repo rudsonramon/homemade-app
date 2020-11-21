@@ -8,8 +8,8 @@ export default function findRecipe({ navigation, route }) {
   const [ingredients, setIngredients] = useState([])
   const [recipes, setRecipes] = useState([])
   const [ingredientList, setIngredientList] = useState([])
-  let recipeRequest = 'http://192.168.0.3:3333/report'
-  let ingredientsRequest = 'http://192.168.0.3:3333/ingredients'
+  let recipeRequest = 'http://192.168.0.5:3333/report'
+  let ingredientsRequest = 'http://192.168.0.5:3333/ingredients'
 
   //FILTERING ONLY THE FIELDS THAT WAS SELECTED BY THE USER
   let obj = ingredientList.filter(field => field.isSelected === true)
@@ -72,7 +72,7 @@ export default function findRecipe({ navigation, route }) {
           setRecipes(response.data)
         })
         .catch(function (error) {
-          console.log('API CALL - recipe/ingredient - error: ', error);
+          console.log('API CALL - recipe/ingredient/?name= - error: ', error);
         })
     //console.log('@@@############ response: ====> ::  ', response)
   }
@@ -92,13 +92,12 @@ export default function findRecipe({ navigation, route }) {
                 <Card key={index}>
                   {item.isSelected ? (
                     <>
-                      <Text key={item.title} >{item.name}</Text>
-                      <Text style={{ color: "green" }}>{"Selected"}</Text>
+                      <Text key={item.id} >{item.name}</Text>
+                      <Text style={{ color: "green" }}>{"Selecionado"}</Text>
                     </>
                   ) : (
                     <>
-                      <Text key={item.title} >{item.name}</Text>
-                      <Text style={{ color: "red" }}>{"Not Selected"}</Text>
+                      <Text key={item.id} >{item.name}</Text>
                     </>
                   )}
                 </Card>
@@ -117,7 +116,7 @@ export default function findRecipe({ navigation, route }) {
             data={ingredients}
             renderItem={({ item }) => (
 
-              <Card key={item.id}>
+              <Card key={item.id} testSelectedValue={true}>
                 <Text key={item.title} >{ingredients}</Text>
                 {//<ImageBackground key={item.illustration} source={item.illustration} style={styles.cardImage}></ImageBackground>
                 }
@@ -227,7 +226,33 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '10%',
   },
-  filterButton: {
+    filterButton: {
     paddingTop: 30,
-  }
+  },
+  card: {
+    borderRadius: 35,
+    elevation: 2,
+    width: 230,
+    height: 80,
+    backgroundColor: '#fff',
+    shadowOffset: { width: 1, height: 1 },
+    shadowColor: '#333',
+    shadowOpacity: 0.4,
+    shadowRadius: 1,
+    marginHorizontal: 2,
+    marginVertical: 3
+  },
+  cardSelected: {
+    borderRadius: 35,
+    elevation: 2,
+    width: 230,
+    height: 80,
+    backgroundColor: '#95f985',
+    shadowOffset: { width: 1, height: 1 },
+    shadowColor: '#333',
+    shadowOpacity: 0.4,
+    shadowRadius: 1,
+    marginHorizontal: 2,
+    marginVertical: 3
+  },
 });
